@@ -1,0 +1,24 @@
+# Secret API keys - NEVER upload these
+.streamlit/secrets.toml
+
+# Python cache files - auto generated, not real code
+__pycache__/
+*.py[cod]
+
+# Virtual environment folder
+venv/
+.venv/
+
+# Local database
+chroma_store/
+
+# Editor settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test PDF files
+*.pdf
