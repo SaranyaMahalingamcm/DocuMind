@@ -6,11 +6,16 @@ from pypdf import PdfReader
 
 def extract_text(uploaded_file):
     reader = PdfReader(uploaded_file)
-    full_text = "\n".join(
-        page.extract_text() for page in reader.pages
-        if page.extract_text()
-    )
-    return full_text
+    page_text=[] #create an empty list
+
+    for page in reader.pages(): # loop the variable through each pages extracted by the reader
+        text=page.extract_text() # extract all the texts in the page using the inbuild function and save in the variable text
+
+        if text != "":
+            page_text.append(text) # If the text is not empty, append the values in text to page_text list   
+    all_texts="\n".join(page_text)
+
+    return all_texts
 
 
 def chunk_text(text, chunk_size=500, overlap=50):
