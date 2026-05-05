@@ -18,17 +18,13 @@ def extract_text(uploaded_file):
     return all_texts
 
 
-def chunk_text(text, chunk_size=500, overlap=50):
-    chunks = []
-    start = 0
-    while start < len(text):
-        end = start + chunk_size
-        chunk = text[start:end]
-        chunk = chunk.strip()
-        if chunk:
-            chunks.append(chunk)
-        start += chunk_size - overlap
-    return chunks
+def chunk_texts(texts, chunk_size=500, overlap=50):
+    chunk_text=[]
+    starting=0
+    text_len=len(texts)
+    ending=len(texts)
+   # for text in starting<= text_len:
+
 
 
 def get_pdf_metadata(uploaded_file):
