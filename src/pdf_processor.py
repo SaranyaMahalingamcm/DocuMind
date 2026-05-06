@@ -1,5 +1,5 @@
-# pdf_processor.py
-# Responsibility: Read a PDF and split it into chunks
+# # pdf_processor.py
+# # Responsibility: Read a PDF and split it into chunks
 
 from pypdf import PdfReader
 
@@ -32,11 +32,10 @@ def text_chunk(text, size=100, overlap=50):
 
 def metadata(uploaded_file):
     reader= PdfReader(uploaded_file)
-    meta=reader.metadata
-    if meta != '':
-        page_count=len(reader.pages)
-        title=meta.get("title","unknown")
-        author=meta.get("author","unknown")
+    page_count=len(reader.pages)
+    meta=reader.metadata or {}      
+    title=meta.get("/Title","unknown")
+    author=meta.get("/Author","unknown")
     return{
         'pages': page_count,
         'title': title,
