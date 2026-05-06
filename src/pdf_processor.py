@@ -18,20 +18,27 @@ def extract_text(uploaded_file):
     return all_texts
 
 
-def chunk_texts(texts, chunk_size=500, overlap=50):
-    chunk_text=[]
-    starting=0
-    text_len=len(texts)
-    ending=len(texts)
-   # for text in starting<= text_len:
+def text_chunk(text, size=100, overlap=50):
+    chunks = []
+    start=0
+    while len(text)>start:
+        end = start+size
+        chuck_text=text[start:end]
+        chuck_text.strip()
+        if chuck_text !="":
+            chunks.append(chuck_text)
+        start=end-overlap
+    return chunks
 
-
-
-def get_pdf_metadata(uploaded_file):
-    reader = PdfReader(uploaded_file)
-    meta = reader.metadata or {}
-    return {
-        "pages": len(reader.pages),
-        "title": meta.get("/Title", "Unknown"),
-        "author": meta.get("/Author", "Unknown")
+def metadata(uploaded_file):
+    reader= PdfReader(uploaded_file)
+    meta=reader.metadata
+    if meta != '':
+        page_count=len(reader.pages)
+        title=meta.get("title","unknown")
+        author=meta.get("author","unknown")
+    return{
+        'pages': page_count,
+        'title': title,
+        'author':author
     }
