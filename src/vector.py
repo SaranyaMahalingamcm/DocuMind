@@ -7,3 +7,6 @@ from sentence_transformers import SentenceTransformer
 def load_embedder():
     model=SentenceTransformer("all-MiniLM-L6-v2")
     return model
+
+client = chromadb.Client() # in memory database
+collection = client.create_collection("documind")
