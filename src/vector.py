@@ -8,7 +8,6 @@ def load_embedder():
     model = SentenceTransformer("all-MiniLM-L6-v2")
     return model
 
-
 def build_vector_store(chunks):
     embedder = load_embedder()
     client = chromadb.Client()
@@ -22,22 +21,12 @@ def build_vector_store(chunks):
         )
     return collection
 
-
-
- # # client = chromadb.HttpClient()
-    # import os
-
-    # # Check which environment we are in
-    # environment = os.environ.get("ENVIRONMENT", "development")
-    # # os.environ.get reads environment variables
-    # # "development" is default if not set
-
-    # if environment == "development":
-    #     # local development — use memory
-    #     client = chromadb.Client()
-
-    # elif environment == "production":
-    #     # deployed — use persistent storage
-    #     client = chromadb.PersistentClient(
-    #         path="./chroma_store"
-    #     )
+def search_chunks(userquestion,collection):
+    embedder = load_embedder()
+    userquestion_embedding = embedder.encode(userquestion).tolist()
+    query_result= collection.query(
+        query_embeddings=[userquestion_embedding],
+        n_results = 3
+    )
+    end_return = query_result["documents"][0]
+    return end_return
