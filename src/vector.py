@@ -11,6 +11,12 @@ def load_embedder():
 def build_vector_store(chunks):
     embedder = load_embedder()
     client = chromadb.Client()
+    try:
+        client.delete_collection("documind")
+    except:
+        pass  # does not exist yet — that is fine
+    
+    # Create fresh collection
     collection = client.create_collection("documind")
     for i, chunk in enumerate(chunks):
         embedding=embedder.encode(chunk).tolist()
