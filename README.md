@@ -4,8 +4,8 @@
 Upload any PDF and ask questions in plain English.
 Powered by RAG, Google Gemini, and ChromaDB.
 
-## 🚀 Live Demo [Click here to try DocuMind](https://pdfreadoc.streamlit.app/)
-[Click here to try DocuMind](https://your-app-url.streamlit.app)
+## 🚀 Live Demo 
+[Click here to try DocuMind](https://pdfreadoc.streamlit.app/)
 
 ## 🎯 How It Works
 PDF Upload → Extract Text → Chunk → Embed → Store in ChromaDB
